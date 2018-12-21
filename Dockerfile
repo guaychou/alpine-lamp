@@ -1,6 +1,6 @@
-FROM alpine:3.6
-ENV TIMEZONE America/Santiago
-RUN apk update && apk upgrade
+FROM alpine:3.8
+ENV TIMEZONE Asia/Jakarta
+RUN apk --no-cache update && apk upgrade
 RUN apk add mariadb mariadb-client \
     apache2 \ 
     apache2-utils \
