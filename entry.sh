@@ -47,3 +47,4 @@ rm -f $tfile
 # start mysql
 # nohup mysqld_safe --skip-grant-tables --bind-address 0.0.0.0 --user mysql > /dev/null 2>&1 &
 exec /usr/bin/mysqld --user=root --bind-address=0.0.0.0
+#exec /usr/bin/mysql --user=root --password=password --host=localhost -e "CREATE DATABASE wordpress"

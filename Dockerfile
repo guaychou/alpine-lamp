@@ -48,7 +48,9 @@ RUN cp /usr/share/zoneinfo/${TIMEZONE} /etc/localtime && \
     sed -i '/skip-external-locking/a log_error = \/var\/lib\/mysql\/error.log' /etc/mysql/my.cnf && \
     sed -i -e"s/^bind-address\s*=\s*127.0.0.1/bind-address = 0.0.0.0/" /etc/mysql/my.cnf && \
     sed -i '/skip-external-locking/a general_log = ON' /etc/mysql/my.cnf && \
-    sed -i '/skip-external-locking/a general_log_file = \/var\/lib\/mysql\/query.log' /etc/mysql/my.cnf
+    sed -i '/skip-external-locking/a general_log_file = \/var\/lib\/mysql\/query.log' /etc/mysql/my.cnf && \
+    a="/var/www/localhost/htdocs" && b="/var/www/localhost/htdocs/my/" && \
+    sed -i -e "s~$a~$b~g" /etc/apache2/httpd.conf
 
 RUN sed -i 's#display_errors = Off#display_errors = On#' /etc/php7/php.ini && \
     sed -i 's#upload_max_filesize = 2M#upload_max_filesize = 100M#' /etc/php7/php.ini && \
@@ -65,17 +67,18 @@ RUN echo "zend_extension=xdebug.so" > /etc/php7/conf.d/xdebug.ini && \
     echo "xdebug.idekey=PHPSTORM" >> /etc/php7/conf.d/xdebug.ini && \ 
     echo "xdebug.remote_log=\"/tmp/xdebug.log\"" >> /etc/php7/conf.d/xdebug.ini
 
+
+COPY my /var/www/localhost/htdocs/my
 # Installing phpMyAdmin version 4.8.4
-RUN cd /var/www/localhost/htdocs && \
+RUN cd /var/www/localhost/htdocs/my && \
     wget https://files.phpmyadmin.net/phpMyAdmin/4.8.4/phpMyAdmin-4.8.4-all-languages.tar.gz && \
     tar -xzvf phpMyAdmin-4.8.4-all-languages.tar.gz && \ 
     mv phpMyAdmin-4.8.4-all-languages phpMyAdmin
 
 COPY entry.sh /entry.sh
-
 RUN chmod u+x /entry.sh
 
-WORKDIR /var/www/localhost/htdocs/
+WORKDIR /var/www/localhost/htdocs/my/
 
 EXPOSE 80
 EXPOSE 3306
