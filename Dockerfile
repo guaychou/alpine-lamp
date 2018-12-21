@@ -1,6 +1,6 @@
-FROM alpine:3.6
-ENV TIMEZONE America/Santiago
-RUN apk update && apk upgrade
+FROM alpine:3.8
+ENV TIMEZONE Asia/Jakarta
+RUN apk --no-cache update && apk upgrade
 RUN apk add mariadb mariadb-client \
     apache2 \ 
     apache2-utils \
@@ -65,6 +65,7 @@ RUN echo "zend_extension=xdebug.so" > /etc/php7/conf.d/xdebug.ini && \
     echo "xdebug.idekey=PHPSTORM" >> /etc/php7/conf.d/xdebug.ini && \ 
     echo "xdebug.remote_log=\"/tmp/xdebug.log\"" >> /etc/php7/conf.d/xdebug.ini
 
+# Installing phpMyAdmin version 4.8.4
 RUN cd /var/www/localhost/htdocs && \
     wget https://files.phpmyadmin.net/phpMyAdmin/4.8.4/phpMyAdmin-4.8.4-all-languages.tar.gz && \
     tar -xzvf phpMyAdmin-4.8.4-all-languages.tar.gz && \ 
@@ -78,5 +79,4 @@ WORKDIR /var/www/localhost/htdocs/
 
 EXPOSE 80
 EXPOSE 3306
-
 ENTRYPOINT ["/entry.sh"]
