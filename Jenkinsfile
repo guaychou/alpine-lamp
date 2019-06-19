@@ -8,7 +8,8 @@ pipeline {
     }
     stage('error') {
       steps {
-        sh 'mkdir kontrolfile'
+        sh '''pwd
+mkdir iwakgoreng'''
         git(branch: 'master', url: 'https://github.com/guaychou/alpine-lamp')
       }
     }
