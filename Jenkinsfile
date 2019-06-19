@@ -6,9 +6,10 @@ pipeline {
         sh 'echo "Createee aaaa"'
       }
     }
-    stage('') {
+    stage('error') {
       steps {
-        sh 'echo "Deploy"'
+        sh 'mkdir kontrolfile'
+        git(branch: 'master', url: 'https://github.com/guaychou/alpine-lamp')
       }
     }
   }
