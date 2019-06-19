@@ -17,8 +17,8 @@ touch aaa.txt'''
       steps {
         git(url: 'https://github.com/guaychou/alpine-lamp', branch: 'master')
         sh '''git add "aaa.txt"
-git commit -a 
-git push origin'''
+git commit -m "tes tes"
+git push origin '''
       }
     }
   }
