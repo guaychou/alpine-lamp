@@ -9,14 +9,15 @@ pipeline {
     stage('error') {
       steps {
         sh '''pwd
-mkdir iwakgoreng'''
+touch aaa.txt'''
         git(branch: 'master', url: 'https://github.com/guaychou/alpine-lamp')
       }
     }
     stage('laporkapten') {
       steps {
-        sh '''apt -y install postfix mail
-mail -s "Tes email" crossmajor99@gmail.com'''
+        sh '''git add aaa.txt
+git commit -m "add aaa.txt"
+git push origin master'''
       }
     }
   }
