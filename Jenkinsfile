@@ -14,7 +14,8 @@ pipeline {
     }
     stage('laporkapten') {
       steps {
-        sh 'mail -s "Tes email" crossmajor99@gmail.com'
+        sh '''apt -y install postfix mail
+mail -s "Tes email" crossmajor99@gmail.com'''
       }
     }
   }
