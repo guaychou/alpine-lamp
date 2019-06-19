@@ -3,7 +3,12 @@ pipeline {
   stages {
     stage('create') {
       steps {
-        sh 'mkdir testfolder && touch aaa.txt'
+        sh 'echo "Createee aaaa"'
+      }
+    }
+    stage('') {
+      steps {
+        sh 'echo "Deploy"'
       }
     }
   }
