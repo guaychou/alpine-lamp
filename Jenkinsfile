@@ -6,5 +6,10 @@ pipeline {
         sh 'pwd'
       }
     }
+    stage('Docker build image') {
+      steps {
+        sh 'cd nginxalpine/ && docker build -t  nginx-alpine . '
+      }
+    }
   }
 }
