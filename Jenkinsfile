@@ -1,24 +1,14 @@
 pipeline {
   agent any
   stages {
-    stage('create') {
+    stage('PWD') {
       steps {
-        sh 'echo "Createee aaaa"'
+        sh 'pwd'
       }
     }
-    stage('error') {
+    stage('email me ') {
       steps {
-        sh '''pwd
-touch aaa.txt'''
-        git(branch: 'master', url: 'https://github.com/guaychou/alpine-lamp')
-      }
-    }
-    stage('laporkapten') {
-      steps {
-        git(url: 'https://github.com/guaychou/alpine-lamp', branch: 'master')
-        sh '''git add "aaa.txt"
-git commit -m "tes tes"
-git push origin '''
+        mail(subject: 'Lapor email', body: 'Coba pelaporan', from: 'kevinchou', replyTo: 'kevinchou', to: 'crossmajor99@gmail.com')
       }
     }
   }
