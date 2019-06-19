@@ -16,6 +16,8 @@ touch aaa.txt'''
     stage('laporkapten') {
       steps {
         sh '''git add aaa.txt
+git config --global user.email "crossmajor99@gmail.com"
+git config --global user.name "kevinchou"
 git commit -m "add aaa.txt"
 git push origin master'''
       }
